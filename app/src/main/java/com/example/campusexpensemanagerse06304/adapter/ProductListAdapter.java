@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListAdapter extends BaseAdapter implements Filterable {
@@ -64,6 +65,40 @@ public class ProductListAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Filter getFilter() {
-        return null;
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final List<Products> results = new ArrayList<>();
+                if (searchPd == null){
+                    searchPd = products;
+                }
+                if (constraint != null){
+                    if (searchPd != null && !searchPd.isEmpty()){
+                        for(final Products p : searchPd){
+                            if(p.get_name().toLowerCase().contains(constraint.toString().toLowerCase())){
+                                results.add(p);
+                            }
+
+                        }
+                    }
+                    oReturn.values = results;
+
+                }
+                return oReturn;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults results) {
+                products = (List<Products>) results.values;
+                notifyDataSetChanged();
+
+            }
+        };
+    }
+    public void notifyDataSetChanged(){
+        super.notifyDataSetChanged();
     }
 }

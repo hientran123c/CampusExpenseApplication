@@ -110,7 +110,7 @@ public class UserDb extends SQLiteOpenHelper {
         try{
             SQLiteDatabase db = this.getReadableDatabase();
             String[] cols = {ID_COL, USERNAME_COL, EMAIL_COL};
-            String condition = USERNAME_COL + " =? OR " + EMAIL_COL + " =? ";
+            String condition = USERNAME_COL + " =? AND " + EMAIL_COL + " =? ";
             String[] params = {username, email};
             Cursor cursor = db.query(TABLE_NAME, cols, condition, params, null, null, null);
             if(cursor.getCount() > 0){
@@ -122,4 +122,25 @@ public class UserDb extends SQLiteOpenHelper {
             throw new RuntimeException(e);
         }return checking;
     }
+    public int changePassword(String newPassword, String account, String email){
+        int check = -1;
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(PASSWORD_COL, newPassword);
+            String condition = USERNAME_COL + " =? AND "+ EMAIL_COL+" =? ";
+            String[] params = { account , email };
+            check = db.update(TABLE_NAME, values, condition, params);
+            db.close();
+        }catch (RuntimeException e){
+            throw new RuntimeException(e);
+        }
+        return check;
+    }
 }
+
+
+
+
+
+

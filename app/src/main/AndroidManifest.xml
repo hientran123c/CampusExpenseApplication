@@ -20,6 +20,8 @@
         <activity android:name=".TestingActivity"/>
         <activity android:name=".SharePreferencesActivity"/>
         <activity android:name=".SignInActivity"/>
+        <activity android:name=".ForgetPasswordActivity"/>
+        <activity android:name=".UpdatePasswordActivity"/>
         <activity
             android:name=".SignUpActivity"
             android:exported="true"

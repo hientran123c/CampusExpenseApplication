@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,6 +98,9 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
         ProductListAdapter pdAdapter = new ProductListAdapter(getActivity(), products);
         listView.setAdapter(pdAdapter);
+        listView.setTextFilterEnabled(true);
+        setupSearchView();
+
         listView.setClickable(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -111,6 +115,12 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         });
         return view;
     }
+    private void setupSearchView(){
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener((SearchView.OnQueryTextListener)this);
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setQueryHint("Search here......");
+    }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -119,6 +129,11 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        if (TextUtils.isEmpty(newText)){
+            listView.clearTextFilter();
+        }else {
+            listView.setFilterText(newText);
+        }
+        return true;
     }
 }

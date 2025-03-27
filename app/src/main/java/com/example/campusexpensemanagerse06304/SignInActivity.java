@@ -22,6 +22,8 @@ public class SignInActivity extends AppCompatActivity {
     Button btnLogin;
     TextView tvSignUp;
     UserDb userDb;
+    private View tvForgetPassword;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +34,15 @@ public class SignInActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvSignUp = findViewById(R.id.tvSignUp);
+        tvForgetPassword = findViewById(R.id.tvForgetPassword);
+        tvForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentForgetPw =new Intent(SignInActivity.this,ForgetPasswordActivity.class);
+                startActivity(intentForgetPw);
+            }
+        });
+
 
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
