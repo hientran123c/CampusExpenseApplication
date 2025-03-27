@@ -76,6 +76,20 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="#999999"
                 tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <EditText
+                android:id="@+id/edtConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="#F3F3F3"
+                android:hint="Confirm password"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="#999999"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
             <EditText
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"

@@ -19,6 +19,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     UserDb userDb;
     Intent intent;
     Bundle bundle;
+
     private String account = null;
     private String email = null;
 

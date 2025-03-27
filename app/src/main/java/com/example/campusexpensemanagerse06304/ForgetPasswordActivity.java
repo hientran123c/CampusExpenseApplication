@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.campusexpensemanagerse06304.database.UserDb;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
-    Button btnConfirm;
+    Button btnConfirm, btnCancel;
     EditText edtAccount,edtEmail;
     UserDb userDb;
     @Override
@@ -25,6 +25,15 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         btnConfirm =findViewById(R.id.btnConfirmAccount);
         edtAccount =findViewById(R.id.edtAccount);
         edtEmail =findViewById(R.id.edtEmail);
+        btnCancel = findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForgetPasswordActivity.this, SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
